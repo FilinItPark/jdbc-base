@@ -1,0 +1,16 @@
+2023-12-13 20:32:53,932	ERROR	org.example.model.db.DBConnection.<init>(DBConnection.java:27)	Произошла ошибка при попытке подключиться к базе данных
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "demo_db_vanya_user"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:693)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:203)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263)
+	at org.postgresql.Driver.makeConnection(Driver.java:444)
+	at org.postgresql.Driver.connect(Driver.java:297)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+	at org.example.model.db.DBConnection.<init>(DBConnection.java:24)
+	at org.example.model.db.DBConnection.getInstance(DBConnection.java:35)
+	at org.example.Main.main(Main.java:12)
+2023-12-13 21:04:22,263	INFO	org.example.model.DBManager.<init>(DBManager.java:20)	DBManager created
+2023-12-13 21:08:31,168	INFO	org.example.model.DBManager.<init>(DBManager.java:22)	DBManager created

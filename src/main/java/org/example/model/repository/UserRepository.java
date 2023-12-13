@@ -1,6 +1,9 @@
 package org.example.model.repository;
 
 import org.example.model.entity.Country;
+import org.example.model.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,33 +16,37 @@ import java.util.List;
  * @author 1ommy
  * @version 13.12.2023
  */
-public class CountryRepository {
+public class UserRepository {
     private Connection connection;
+    private Logger logger = LoggerFactory.getLogger(UserRepository.class);
 
-    public CountryRepository(Connection connection) {
+    public UserRepository(Connection connection) {
         this.connection = connection;
     }
 
-    public List<Country> findAll() throws SQLException {
-        List<Country> countries = new ArrayList<>();
+    public List<User> findAll() throws SQLException {
+        List<User> users = new ArrayList<>();
 
         Statement statement = connection.createStatement();
-        String sql = "select * from country";
+        String sql = "select * from users";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
-            String title = resultSet.getString("title");
-            int population = resultSet.getInt("population");
+            String username = resultSet.getString("username");
+            String fullName = resultSet.getString("fullName");
+            int countryId = resultSet.getInt("country_id");
 
-            var country = new Country(id, title, population);
-            countries.add(country);
+            var user = new User(id, username, fullName, countryId);
+            users.add(user);
         }
+
+        logger.debug("Мы успешно нашли все записи");
 
         resultSet.close();
         statement.close();
 
-        return countries;
+        return users;
     }
 }
